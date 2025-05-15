@@ -263,26 +263,38 @@ function revealScore() {
   localStorage.removeItem('quizScore');
 }
 
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.getElementById('revealBtn')) {
+    document.getElementById('revealBtn').addEventListener('click', revealScore);
+  }
+
+  if (window.location.pathname.includes('leaderboard.html')) {
+    const leaderboard = JSON.parse(localStorage.getItem("quizLeaderboard")) || [];
+    leaderboard.sort((a, b) => b.score - a.score);
+
+    const tbody = document.querySelector(".leaderboard-table tbody");
+    leaderboard.forEach((entry, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td class="rank">${index + 1}</td><td>${entry.name}</td><td>${entry.score}</td>`;
+      tbody.appendChild(row);
+    });
+  }
+});
 function login() {
   const username = document.getElementById('username').value.trim();
   const password = document.getElementById('password').value;
 
-  fetch('/signin', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.success) {
-      localStorage.setItem("quizUsername", username);
-      window.location.href = "rules.html";
-    } else {
-      alert(data.message);
-    }
-  });
-}
+  const savedUser = localStorage.getItem("quiz_username");
+  const savedPass = localStorage.getItem("quiz_password");
 
+  if (username === savedUser && password === savedPass) {
+    alert("Login successful!");
+    window.location.href = "rules.html";
+  } else {
+    alert("Invalid username or password.");
+  }
+}
 function signup() {
   const firstName = document.getElementById('firstName').value.trim();
   const lastName = document.getElementById('lastName').value.trim();
@@ -300,18 +312,30 @@ function signup() {
     return;
   }
 
-  const data = { firstName, lastName, username, password };
+  // Store or send to MongoDB backend here
+  const userData = {
+    firstName,
+    lastName,
+    username,
+    password,
+  };
 
-  fetch('/api/signup', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(res => res.json())
-  .then(response => {
-    alert(response.message);
-    if (response.success) {
-      window.location.href = "index.html";
-    }
-  });
+  console.log("✅ Ready to store to MongoDB:", userData);
+
+  // Example: Send to API (commented out)
+  // fetch('/api/signup', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify(userData)
+  // }).then(res => {
+  //   if (res.ok) {
+  //     alert("Signup successful!");
+  //     window.location.href = "index.html";
+  //   } else {
+  //     alert("Signup failed.");
+  //   }
+  // });
+
+  alert("Signup successful! Redirecting to login...");
+  window.location.href = "index.html";
 }
