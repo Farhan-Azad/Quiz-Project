@@ -24,13 +24,13 @@
   
   <h1>User Profile</h1>
   <div id="profileContent"></div>
-  <button onclick="location.href='index.html'">Back to Home</button>
+  <button onclick="location.href='home.html'">Back to Home</button>
 
   <script>
     const user = localStorage.getItem("loggedInUser");
     if (!user) {
       alert("You must log in first.");
-      window.location.href = "index.html";
+      window.location.href = "home.html";
     } else {
       document.getElementById("profileContent").innerHTML = `
         <p><strong>Username:</strong> ${user}</p>
