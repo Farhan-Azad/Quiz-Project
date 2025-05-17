@@ -331,7 +331,11 @@ button:hover {
 }
 
 [data-theme="light"] .questions {
-  color: #333
+  color: #ffffff
+}
+
+[data-theme="light"] .questions {
+  color: #3b0080
 }
 
 .leaderboard-body {
@@ -355,6 +359,16 @@ button:hover {
 }
 
 [data-theme="light"] .leaderboard-title {
+  color: #3b0080;
+  text-shadow: none;
+}
+
+[data-theme="dark"] .leaderboard-table {
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="light"] .leaderboard-table {
   color: #3b0080;
   text-shadow: none;
 }

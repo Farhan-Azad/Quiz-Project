@@ -61,50 +61,7 @@
       <button onclick="location.href='leaderboard.html'">LEADERBOARD</button>
     </div>
   </div>
-
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById("sidebar");
-      const overlay = document.getElementById("overlay");
-      sidebar.classList.toggle("active");
-      overlay.style.display = sidebar.classList.contains("active") ? "block" : "none";
-    }
-
-    function logout() {
-      localStorage.removeItem("loggedInUser");
-      window.location.href = "index.html";
-    }
-
-    function checkLoginStatus() {
-      const user = localStorage.getItem("loggedInUser");
-      const hamburger = document.getElementById("menuToggle");
-      const sidebar = document.getElementById("sidebar");
-      const overlay = document.getElementById("overlay");
-      const welcome = document.getElementById("welcomeMessage");
-
-      if (!user) {
-        alert("Please log in first.");
-        window.location.href = "index.html";
-        return;
-      }
-
-      if (hamburger) hamburger.style.display = "block";
-      if (sidebar) sidebar.style.display = "flex";
-      if (welcome) welcome.textContent = `Welcome, ${user}!`;
-    }
-
-    function startQuiz() {
-      const username = localStorage.getItem("loggedInUser");
-      if (!username) {
-        alert("Please log in to start the quiz.");
-        window.location.href = "index.html";
-        return;
-      }
-      localStorage.setItem("quizUsername", username);
-      location.href = "quiz.html";
-    }
-
-    window.addEventListener("DOMContentLoaded", checkLoginStatus);
-  </script>
+  
+<script src="script.js"></script>
 </body>
 </html>
