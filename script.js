@@ -342,11 +342,6 @@ function toggleSidebar() {
       const overlay = document.getElementById("overlay");
       const welcome = document.getElementById("welcomeMessage");
 
-      if (!user) {
-        alert("Please log in first.");
-        window.location.href = "index.html";
-        return;
-      }
 
       if (hamburger) hamburger.style.display = "block";
       if (sidebar) sidebar.style.display = "flex";
@@ -399,4 +394,31 @@ function signup() {
       window.location.href = "login.html";
     }
   });
+}
+function loadUserProfile() {
+  const user = localStorage.getItem("loggedInUser");
+
+  const sidebar = document.getElementById("sidebar");
+  const hamburger = document.getElementById("menuToggle");
+
+
+
+  if (sidebar) sidebar.style.display = "flex";
+  if (hamburger) hamburger.style.display = "block";
+
+  const initials = user.charAt(0).toUpperCase();
+  const profileContent = document.getElementById("profileContent");
+
+  if (profileContent) {
+    profileContent.innerHTML = `
+      <p><strong>Username:</strong> ${user}</p>
+      <p><strong>Email:</strong> ${user}@example.com</p>
+      <p><strong>Joined:</strong> April 2025</p>
+      <p><strong>Quizzes Taken:</strong> 0</p>
+    `;
+  }
+}
+
+if (window.location.pathname.includes("profile.html")) {
+  window.addEventListener("DOMContentLoaded", loadUserProfile);
 }
