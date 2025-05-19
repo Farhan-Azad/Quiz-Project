@@ -343,6 +343,10 @@ button:hover {
   padding: 2rem;
 }
 
+[data-theme="light"] .leaderboard-body {
+  color: #3b0080;
+}
+
 .leaderboard-title {
   font-size: 4rem;
   margin-bottom: 2rem;

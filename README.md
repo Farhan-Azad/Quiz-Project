@@ -35,10 +35,13 @@ then enter http://localhost:3000/ in your browser
 
 Group Member Responsibilities
 
-Farhan Azad:
+Mohammad Farhan Azad:
 -updated colors
--rerouted html files
+-rerouted html, script files for a more organized code
 -increased question timer
+-improved UI
+-fixed all the potential bugs
+-fixed logics for certain files
 
 
 Robin Verma:
